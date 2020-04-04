@@ -22,7 +22,8 @@ class _addReportCase extends State<addReportCase>{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title:Text("Add Report Case")
+        backgroundColor: Colors.white,
+        title:Text("Add Report Case",style: TextStyle(color:Colors.black),)
       ),
       body:Form(
         key: _formKey,

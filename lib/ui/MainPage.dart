@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
-import 'package:covid19/ui/CommunityMap.dart';
+import 'package:covid19/CommunityMap/CommunityMap.dart';
 import 'package:covid19/ui/Report.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';

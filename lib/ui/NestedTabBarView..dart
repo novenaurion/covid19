@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ShowReportCase.dart';
+import '../CommunityMap/ShowReportCase.dart';
 
 class NestedTabBar extends StatefulWidget {
 

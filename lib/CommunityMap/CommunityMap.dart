@@ -1,6 +1,7 @@
+import 'package:covid19/CommunityMap/NearbyHospital.dart';
 import 'package:covid19/ui/NestedTabBarView..dart';
-import 'package:covid19/ui/ShowReportCase.dart';
-import 'package:covid19/ui/addReportCase.dart';
+import 'package:covid19/CommunityMap/ShowReportCase.dart';
+import 'package:covid19/CommunityMap/addReportCase.dart';
 import 'package:flutter/material.dart';
 
 
