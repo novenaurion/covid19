@@ -15,11 +15,7 @@ class _NearByHospitalState extends State<NearbyHospital>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Near By Hospital"),
-      ),
-      body:  Column(
+    return  Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Row(
@@ -65,10 +61,38 @@ class _NearByHospitalState extends State<NearbyHospital>{
                   ),
                 ),
               ),
+              Expanded(
+                child: Container(
+                  margin:EdgeInsets.only(left:20.0),
+                  child: Card(
+                    elevation: 5.0,
+                    child: DropdownButton(
+                      underline: Container(
+                        height: 1.0,
+                        decoration: const BoxDecoration(
+                            border: Border(bottom: BorderSide(color: Colors.transparent,width: 0.0))
+                        ),
+                      ),
+                      value:_selectedCity!=null? _selectedCity : null,
+                      hint: Text('City'),
+                      onChanged: (String selectedValue){
+                        setState(() {
+                          _selectedCity=selectedValue;
+                        });
+                      },
+                      items: city.map((city){
+                        return DropdownMenuItem(
+                          child: new Text(city),
+                          value: city,
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ],
-      )
     );
   }
 }
