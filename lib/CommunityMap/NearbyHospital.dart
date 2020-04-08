@@ -19,13 +19,16 @@ class _NearByHospitalState extends State<NearbyHospital>{
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Expanded(
+              Flexible(
                 child: Container(
+                  width: 120.00,
                   margin: EdgeInsets.only(left:15.0),
                   child: Card(
                     elevation: 5.0,
                     child: DropdownButton(
+                      isExpanded: true,
                       underline: Container(
                         height: 1.0,
                         decoration: const BoxDecoration(
@@ -61,12 +64,13 @@ class _NearByHospitalState extends State<NearbyHospital>{
                   ),
                 ),
               ),
-              Expanded(
+              Flexible(
                 child: Container(
-                  margin:EdgeInsets.only(left:20.0),
+                  width:120.00,
                   child: Card(
                     elevation: 5.0,
                     child: DropdownButton(
+                      isExpanded: true,
                       underline: Container(
                         height: 1.0,
                         decoration: const BoxDecoration(

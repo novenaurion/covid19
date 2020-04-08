@@ -42,7 +42,6 @@ class CommunityMap extends StatefulWidget{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text("Community Map",style: TextStyle(color: Colors.black),),
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: Colors.teal,
