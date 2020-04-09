@@ -1,49 +1,39 @@
 import 'package:covid19/CommunityMap/NearbyHospital.dart';
-import 'package:covid19/ui/NestedTabBarView..dart';
-import 'package:covid19/CommunityMap/ShowReportCase.dart';
-import 'package:covid19/CommunityMap/addReportCase.dart';
 import 'package:flutter/material.dart';
 
+import '../CommunityMap/ShowReportCase.dart';
 
-class CommunityMap extends StatefulWidget{
+class CommunityMap extends StatefulWidget {
+
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _CommunityMap();
-  }
+  _CommunityMapState createState() => _CommunityMapState();
 }
 
-  class _CommunityMap extends State<CommunityMap> with SingleTickerProviderStateMixin{
+class _CommunityMapState extends State<CommunityMap>
+    with TickerProviderStateMixin {
+  TabController _nestedTabController;
 
-
-
-  TabController _tabController;
-
+  @override
   void initState() {
     super.initState();
-    _tabController = TabController(
-      length: 2,
-      vsync: this,
-      initialIndex: 0,
-    )..addListener(() {
-      setState(() {});
-    });
+
+    _nestedTabController = new TabController(length: 2, vsync: this);
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
     super.dispose();
+    _nestedTabController.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        bottom: TabBar(
-          controller: _tabController,
+    double screenHeight = MediaQuery.of(context).size.height;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        TabBar(
+          controller: _nestedTabController,
           indicatorColor: Colors.teal,
           labelColor: Colors.teal,
           unselectedLabelColor: Colors.black54,
@@ -58,22 +48,19 @@ class CommunityMap extends StatefulWidget{
             ),
           ],
         ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: <Widget>[
-          ReportCase(),
-          NearbyHospital(),
-        ],
-      ),
-      floatingActionButton: _tabController.index == 0
-          ? FloatingActionButton(
-        backgroundColor: Colors.red,
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(context,MaterialPageRoute(builder: (context) => addReportCase()));
-        },
-      ) :null
+        Expanded(
+          child: Container(
+            height: screenHeight * 0.70,
+            child: TabBarView(
+              controller: _nestedTabController,
+              children: <Widget>[
+                ReportCase(),
+                NearbyHospital()
+              ],
+            ),
+          ),
+        )
+      ],
     );
   }
-  }
+}

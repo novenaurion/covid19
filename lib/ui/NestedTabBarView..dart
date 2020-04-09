@@ -1,3 +1,4 @@
+import 'package:covid19/CommunityMap/NearbyHospital.dart';
 import 'package:flutter/material.dart';
 
 import '../CommunityMap/ShowReportCase.dart';
@@ -54,12 +55,7 @@ class _NestedTabBarState extends State<NestedTabBar>
               controller: _nestedTabController,
               children: <Widget>[
               ReportCase(),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.orangeAccent,
-                  ),
-                ),
+              NearbyHospital()
               ],
             ),
           ),

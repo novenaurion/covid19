@@ -27,7 +27,7 @@ class _addReportCase extends State<addReportCase>{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueAccent,
         title:Text("Add Report Case",style: TextStyle(color:Colors.black),)
       ),
       body:Form(
@@ -53,6 +53,10 @@ class _addReportCase extends State<addReportCase>{
                       ),
                       width: double.infinity,
                       child: TextFormField(
+                        validator: (String arg) {
+                          if(arg==null)
+                            return 'Please fill Name';
+                        },
                         decoration: InputDecoration.collapsed(),
                         style: TextStyle(
                           fontSize: 20.0,
@@ -74,6 +78,7 @@ class _addReportCase extends State<addReportCase>{
                           child: Card(
                             elevation: 5.0,
                             child: DropdownButton(
+                              isExpanded:true,
                                     underline: Container(
                                       height: 1.0,
                                       decoration: const BoxDecoration(
@@ -116,6 +121,7 @@ class _addReportCase extends State<addReportCase>{
                           child: Card(
                             elevation: 5.0,
                             child: DropdownButton(
+                              isExpanded:true,
                                     underline: Container(
                                       height: 1.0,
                                       decoration: const BoxDecoration(
@@ -158,6 +164,10 @@ class _addReportCase extends State<addReportCase>{
                       ),
                       width: double.infinity,
                       child: TextFormField(
+                        validator: (String arg) {
+                          if(arg==null)
+                            return 'Please fill Reason';
+                        },
                         onSaved:(value){
                           reason=value;
                         },
@@ -175,7 +185,7 @@ class _addReportCase extends State<addReportCase>{
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                         width:double.infinity,
-                        child: Text("Other",textAlign:TextAlign.start,)),
+                        child: Text("Other (Option)" ,textAlign:TextAlign.start,)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left:8.0,right:8.0),
@@ -185,6 +195,7 @@ class _addReportCase extends State<addReportCase>{
                       ),
                       width: double.infinity,
                       child: TextFormField(
+
                         onSaved:(value){
                           other=value;
                         },
@@ -204,9 +215,14 @@ class _addReportCase extends State<addReportCase>{
                       width: 250,
                       height: 50,
                       child: FlatButton(
-                        onPressed:(){
-                          _formKey.currentState.save();
-                          postToServer();
+                        onPressed:() {
+                          if (_formKey.currentState.validate()) {
+                            _formKey.currentState.save();
+                          }
+                          if (_selectedReportRegion != null ||
+                              _selectedReportCity != null) {
+                            postToServer();
+                          }
                         },
                         child: Text("Report"),
                       ),
