@@ -43,51 +43,7 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
           title: Text("Covid")
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 400.00,
-            child: GoogleMap(
-              onMapCreated: _onMapCreated,
-              mapType: MapType.normal,
-              initialCameraPosition: CameraPosition(
-                target: LatLng(
-                    currentPosition.latitude, currentPosition.longitude),
-                zoom: 15,
-              ),
-              onTap: _handleTap,
-              markers: _markers.values.toSet(),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            width: 300.00,
-            height: 40.00,
-            child: FlatButton(
-                color: Colors.blueAccent,
-                onPressed: () {
-
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => CommunityMap()));
-                },
-                child: Text("Report Case")
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-              width: 300.00,
-              height: 40.00,
-              child: FlatButton(
-                  onPressed: () {},
-                  color: Colors.blueAccent,
-                  child: Text("Nearby Hospitals"))
-          )
-        ],
-      ),
+      body: CommunityMap()
     );
   }
 

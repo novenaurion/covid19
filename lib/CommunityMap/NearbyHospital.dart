@@ -19,7 +19,7 @@ class _NearByHospitalState extends State<NearbyHospital>{
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly  ,
             children: <Widget>[
               Flexible(
                 child: Container(

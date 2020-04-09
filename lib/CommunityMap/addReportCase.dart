@@ -18,7 +18,7 @@ class _addReportCase extends State<addReportCase>{
   Random random = new Random();
   List<String> addReportRegion=["Yangon","Mandalay"];
   List<String> addReportCity=['Region '];
-  String url = 'https://www.athipay.com/api/Report/SelfReports';
+  String url = "https://www.athipay.com/api/Report/SelfReports";
 
   String _selectedReportRegion,_selectedReportCity,name,reason,other;
 
@@ -247,11 +247,12 @@ class _addReportCase extends State<addReportCase>{
       "Township":_selectedReportCity
     };
     var response = await http
-        .post(Uri.parse(url), body: json.encode(requestPayload),headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
+        .post(Uri.encodeFull(url), body: json.encode(requestPayload),headers: <String, String>{
+      'Content-Type': 'application/json','Accept':'application/json'
     });
 
     print(response.statusCode);
+    print(response.body.toString());
   }
 
 }

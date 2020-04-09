@@ -39,6 +39,7 @@ class _CommunityMapState extends State<CommunityMap>
           unselectedLabelColor: Colors.black54,
           labelPadding: EdgeInsets.symmetric(horizontal: 50.0),
           isScrollable: true,
+          
           tabs: <Widget>[
             Tab(
               text: "Report",

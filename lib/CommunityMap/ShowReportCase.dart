@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:covid19/CommunityMap/addReportCase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -30,18 +32,35 @@ final String apiMandalay="https://www.athipay.com/api/Report/SelfReports/Count/M
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      width: double.infinity,
-      height:100,
-      child: GoogleMap(
-        onMapCreated: _onMapCreated,
-        mapType: MapType.normal,
-        initialCameraPosition: CameraPosition(
-          target: LatLng(21.9162, 95.9560),
-          zoom: 5.0,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Container(
+          width: double.infinity,
+          height:600,
+          child: GoogleMap(
+            onMapCreated: _onMapCreated,
+            mapType: MapType.normal,
+            initialCameraPosition: CameraPosition(
+              target: LatLng(21.9162, 95.9560),
+              zoom: 5.0,
+            ),
+            markers: _markers.values.toSet(),
+          ),
         ),
-        markers: _markers.values.toSet(),
-      ),
+        Padding(
+          padding: const EdgeInsets.only(bottom:25.0,right:10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              FloatingActionButton(
+                child: Icon(Icons.add),
+                onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context)=> addReportCase()));},
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
