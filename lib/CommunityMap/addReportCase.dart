@@ -237,24 +237,22 @@ class _addReportCase extends State<addReportCase>{
     );
   }
 
-  Future<String> postToServer() async {
+  Future<http.Response> postToServer() async {
     Map<String, String> requestPayload = {
       "MobileUserId": random.nextInt(1000000000).toString(),
-      "Name":name,
-      "Reason":reason,
-      "Others":other,
-      "Region":_selectedReportRegion,
-      "Township":_selectedReportCity
+      "Name": name,
+      "Reason": reason,
+      "Others": other,
+      "Region": _selectedReportRegion,
+      "Township": _selectedReportCity
     };
-    var response = await http
-        .post(Uri.encodeFull(url), body: json.encode(requestPayload),headers: <String, String>{
-      'Content-Type': 'application/json','Accept':'application/json'
+    final http.Response response = await http.post(
+        'https://www.athipay.com/api/Report/SelfReports',
+        body: jsonEncode(requestPayload), headers: <String, String>{
+      'Content-Type': 'application/json', 'Accept': 'application/json'
     });
-
-    print(response.statusCode);
-    print(response.body.toString());
+    print(response.statusCode.toString());
   }
-
 }
 //
 //

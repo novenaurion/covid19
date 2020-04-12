@@ -32,33 +32,37 @@ final String apiMandalay="https://www.athipay.com/api/Report/SelfReports/Count/M
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return ListView(
       children: <Widget>[
-        Container(
-          width: double.infinity,
-          height:600,
-          child: GoogleMap(
-            onMapCreated: _onMapCreated,
-            mapType: MapType.normal,
-            initialCameraPosition: CameraPosition(
-              target: LatLng(21.9162, 95.9560),
-              zoom: 5.0,
-            ),
-            markers: _markers.values.toSet(),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom:25.0,right:10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FloatingActionButton(
-                child: Icon(Icons.add),
-                onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context)=> addReportCase()));},
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              height:600,
+              child: GoogleMap(
+                onMapCreated: _onMapCreated,
+                mapType: MapType.normal,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(21.9162, 95.9560),
+                  zoom: 5.0,
+                ),
+                markers: _markers.values.toSet(),
               ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom:25.0,right:10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  FloatingActionButton(
+                    child: Icon(Icons.add),
+                    onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context)=> addReportCase()));},
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ],
     );
