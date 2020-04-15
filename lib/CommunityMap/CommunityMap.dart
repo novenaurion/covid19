@@ -39,6 +39,7 @@ class _CommunityMapState extends State<CommunityMap> {
         body: ListView(
           children: <Widget>[
             Column(
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.all(10.0),
@@ -68,27 +69,31 @@ class _CommunityMapState extends State<CommunityMap> {
                     ),
                   ),
                 ),
-                Container(
-                  height:500.00,
-                  child: FutureBuilder<List<allReportByRegion>>(
-                    future: fetchCase(),
-                    builder: (context, snapshot) {
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      child: FutureBuilder<List<allReportByRegion>>(
+                        future: fetchCase(),
+                        builder: (context, snapshot) {
 
-                      if (snapshot.hasData) {
-                        List<allReportByRegion> data = snapshot.data;
+                          if (snapshot.hasData) {
+                            List<allReportByRegion> data = snapshot.data;
 
-                        return showTable(data);
+                            return showTable(data);
 
-                      } else if (snapshot.hasError) {
-                        return Text(snapshot.error);
-                      }
+                          } else if (snapshot.hasError) {
+                            return Text(snapshot.error);
+                          }
 
-                      // By default, show a loading spinner.
-                      return Container(
-                          height:150.0,
-                          child: Center(child: CircularProgressIndicator()));
-                    },
-                  ),
+                          // By default, show a loading spinner.
+                          return Container(
+                              height:150.0,
+                              child: Center(child: CircularProgressIndicator()));
+                        },
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
                     height:80.0,
@@ -117,7 +122,6 @@ class _CommunityMapState extends State<CommunityMap> {
                       },
                     )
                 )
-
               ],
             ),
           ],
