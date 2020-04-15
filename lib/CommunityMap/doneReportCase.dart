@@ -1,3 +1,4 @@
+import 'package:covid19/CommunityMap/CommunityMap.dart';
 import 'package:covid19/ui/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _doneReoprtCaseState extends State<doneReoprtCase>{
                   ),
                   onTap: (){
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => MainPage()));
+                        context, MaterialPageRoute(builder: (context) => CommunityMap()));
                   },
                 ),
               )
