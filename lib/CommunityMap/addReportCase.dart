@@ -154,7 +154,7 @@ class _addReportCase extends State<addReportCase>{
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
+                      child: Expanded(
                         child: CheckboxGroup(
                             labels: <String>[
                               "ချောင်းဆိုးခြင်း",
