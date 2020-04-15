@@ -36,86 +36,90 @@ class _CommunityMapState extends State<CommunityMap> {
         appBar: AppBar(
             title: Text("Covid")
         ),
-        body: Column(
+        body: ListView(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child: Card(
-                child: DropdownButton(
-                  isExpanded: true,
-                  underline: Container(
-                    height: 1.0,
-                    decoration: const BoxDecoration(
-                        border: Border(bottom: BorderSide(
-                            color: Colors.transparent, width: 0.0))
+            Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: Card(
+                    child: DropdownButton(
+                      isExpanded: true,
+                      underline: Container(
+                        height: 1.0,
+                        decoration: const BoxDecoration(
+                            border: Border(bottom: BorderSide(
+                                color: Colors.transparent, width: 0.0))
+                        ),
+                      ),
+                      value: _selectedregion,
+                      hint: Text('Region'),
+                      onChanged: (String selectedValue) {
+                        setState(() {
+                          _selectedregion = selectedValue;
+                        });
+                      },
+                      items: region.map((region) {
+                        return DropdownMenuItem(
+                          child: new Text(region),
+                          value: region,
+                        );
+                      }).toList(),
                     ),
                   ),
-                  value: _selectedregion,
-                  hint: Text('Region'),
-                  onChanged: (String selectedValue) {
-                    setState(() {
-                      _selectedregion = selectedValue;
-                    });
-                  },
-                  items: region.map((region) {
-                    return DropdownMenuItem(
-                      child: new Text(region),
-                      value: region,
-                    );
-                  }).toList(),
                 ),
-              ),
-            ),
-            Container(
-              height:500.00,
-              child: FutureBuilder<List<allReportByRegion>>(
-                future: fetchCase(),
-                builder: (context, snapshot) {
+                Container(
+                  height:500.00,
+                  child: FutureBuilder<List<allReportByRegion>>(
+                    future: fetchCase(),
+                    builder: (context, snapshot) {
 
-                  if (snapshot.hasData) {
-                    List<allReportByRegion> data = snapshot.data;
+                      if (snapshot.hasData) {
+                        List<allReportByRegion> data = snapshot.data;
 
-                    return showTable(data);
+                        return showTable(data);
 
-                  } else if (snapshot.hasError) {
-                    return Text(snapshot.error);
-                  }
+                      } else if (snapshot.hasError) {
+                        return Text(snapshot.error);
+                      }
 
-                  // By default, show a loading spinner.
-                  return Container(
-                      height:150.0,
-                      child: Center(child: CircularProgressIndicator()));
-                },
-              ),
-            ),
-            Container(
-                height:80.0,
-                padding:EdgeInsets.all (10.0),
-                child:InkWell(
-                  child: Card(
-                    elevation: 5.0,
-                    child: Center(child: Text("ကိုယ်တိုင်သီးသန့်စောင့်ကြည့်ကာလကို တင်ပြခြင်း")),
+                      // By default, show a loading spinner.
+                      return Container(
+                          height:150.0,
+                          child: Center(child: CircularProgressIndicator()));
+                    },
                   ),
-                  onTap: (){
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=> addReportCase()));
-                  },
+                ),
+                Container(
+                    height:80.0,
+                    padding:EdgeInsets.all (10.0),
+                    child:InkWell(
+                      child: Card(
+                        elevation: 5.0,
+                        child: Center(child: Text("ကိုယ်တိုင်သီးသန့်စောင့်ကြည့်ကာလကို တင်ပြခြင်း")),
+                      ),
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=> addReportCase()));
+                      },
+                    )
+                ),
+
+                Container(
+                    height: 80.0,
+                    padding: EdgeInsets.all(10.0),
+                    child:InkWell(
+                      child: Card(
+                        elevation: 5.0,
+                        child: Center(child: Text("အနီးနားရှိ ဆေးရုံများ")),
+                      ),
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=> NearbyHospital()));
+                      },
+                    )
                 )
+
+              ],
             ),
-
-            Container(
-                height: 80.0,
-                padding: EdgeInsets.all(10.0),
-                child:InkWell(
-                  child: Card(
-                    elevation: 5.0,
-                    child: Center(child: Text("အနီးနားရှိ ဆေးရုံများ")),
-                  ),
-                  onTap: (){
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=> NearbyHospital()));
-                  },
-                )
-            )
-
           ],
         )
     );
