@@ -262,6 +262,12 @@ class _addReportCase extends State<addReportCase>{
                       ),
                       child: TextFormField(
                         decoration: InputDecoration.collapsed( ),
+                        validator: (String arg) {
+                          if(arg==null)
+                            return 'Please fill the form';
+                          else
+                            return null;
+                        },
                         onSaved: (input)=> Name=input,
                       ),
                     ),
@@ -290,6 +296,12 @@ class _addReportCase extends State<addReportCase>{
                       ),
                       child: TextFormField(
                         decoration: InputDecoration.collapsed( ),
+                          validator: (String arg) {
+                            if(arg==null)
+                              return 'Please fill the form';
+                            else
+                              return null;
+                          },
                         onSaved: (input)=> nrcNumber=input,
                       ),
                     ),
@@ -433,8 +445,7 @@ class _addReportCase extends State<addReportCase>{
                 ),
               ),
                 onTap: (){
-//                    checkValidation();
-                    showTermsandConditonDialog();
+                    checkValidation();
 
                 },
               ),
@@ -617,8 +628,9 @@ class _addReportCase extends State<addReportCase>{
   }
 
   void checkValidation() {
-    _formKey.currentState.save();
     _formKey.currentState.validate();
+    _formKey.currentState.save();
+
     if(checkForTravel==null ||checkForHavingChronicDiseases==null ||checkAge == null|| nrcNumber ==null ||
     _selectedregion ==null || _selectedregion ==null || sympton== null || Name==null || Q2==null){
       showDialog(
