@@ -6,7 +6,7 @@ import 'package:covid19/ui/MainPage.dart';
 void main(){
   runApp(
     new MaterialApp(
-      home:MainPage(),
+      home:CommunityMap(),
       title:"Covid-19"
     )
   );
