@@ -201,7 +201,7 @@ class _NearByHospitalState extends State<NearbyHospital>{
       }
     }
     else{
-      final url = 'https://www.athipay.com/api/Locations/Hospitals/'+_selectedCity;
+      final url = 'https://www.athipay.com/api/Locations/Hospitals/Township/'+_selectedCity;
       final response = await http.get(url);
       if (response.statusCode == 200) {
         List jsonResponse = json.decode(response.body);
